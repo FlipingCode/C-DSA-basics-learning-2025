@@ -113,10 +113,10 @@ int main()
     push(8);
 
     isfull();
-    int j = 0;
-    while (j < max)
+    int j = 1;
+    while (j <= max)
     {
-        if (j == 0)
+        if (j == 1)
         {
             printf("************\n");
         }
@@ -125,7 +125,7 @@ int main()
 
         printf("value: %d \n", x);
 
-        if (j == max - 1)
+        if (j == max)
         {
             printf("************\n");
         }

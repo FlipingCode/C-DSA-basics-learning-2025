@@ -3,7 +3,7 @@
 
 int top = -1;
 char x;
-char p[] = "abaaaacaaaaba";
+char p[] = "abacaba";
 int max = 100;
 
 char s[sizeof(p) - 2];

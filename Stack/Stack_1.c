@@ -105,6 +105,7 @@ int main()
     // popped
     push(s, 2);
     push(s, 3);
+    push(s, 4);
     printf("stack element 1 is %d\n", peep(s, 1));
     printf("stack element 0 is %d\n", s->arr[0]);
     xchange(s, 1, 11);

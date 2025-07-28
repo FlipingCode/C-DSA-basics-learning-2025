@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct stack
+typedef struct
 {
     int size;
     int top;
     int *arr;
-};
+} stack;
 
-int isempty(struct stack *ptr)
+int isempty(stack *ptr)
 {
     if (ptr->top <= -1)
     {
@@ -19,7 +19,7 @@ int isempty(struct stack *ptr)
         return 0;
     }
 }
-int isfull(struct stack *ptr)
+int isfull(stack *ptr)
 {
     if (ptr->top >= ptr->size - 1)
     {
@@ -30,7 +30,7 @@ int isfull(struct stack *ptr)
         return 0;
     }
 }
-int push(struct stack *ptr, int x)
+int push(stack *ptr, int x)
 {
     if (isfull(ptr) == 1)
     {
@@ -43,7 +43,7 @@ int push(struct stack *ptr, int x)
         return 1;
     }
 }
-int pop(struct stack *ptr)
+int pop(stack *ptr)
 {
     if (isempty(ptr) == 1)
     {
@@ -58,7 +58,7 @@ int pop(struct stack *ptr)
         return x;
     }
 }
-int peep(struct stack *ptr, int i)
+int peep(stack *ptr, int i)
 {
     if (i <= 0 || ptr->top - i + 1 < 0)
 
@@ -74,7 +74,7 @@ int peep(struct stack *ptr, int i)
         return x;
     }
 }
-int xchange(struct stack *ptr, int i, int x)
+int xchange(stack *ptr, int i, int x)
 {
     if (i <= 0 || ptr->top - i + 1 < 0)
 
@@ -93,7 +93,7 @@ int xchange(struct stack *ptr, int i, int x)
 int main()
 {
 
-    struct stack *s = (struct stack *)malloc(sizeof(struct stack));
+    stack *s = (stack *)malloc(sizeof(stack));
 
     s->size = 10;
     s->top = -1;
@@ -106,6 +106,7 @@ int main()
     push(s, 2);
     push(s, 3);
     push(s, 4);
+
     printf("stack element 1 is %d\n", peep(s, 1));
     printf("stack element 0 is %d\n", s->arr[0]);
     xchange(s, 1, 11);

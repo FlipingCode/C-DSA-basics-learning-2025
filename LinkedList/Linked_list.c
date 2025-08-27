@@ -5,29 +5,75 @@ typedef struct node
     int data;
     struct node *next;
 } node;
-void traversal(node *i)
+int traversal(node *p)
 {
-
-    while (i != NULL)
+    while (p != NULL)
     {
-        printf("%d\n", i->data);
-        i = i->next;
+        printf("data:%d\n", p->data);
+        p = p->next;
     }
 }
-node *insertatbeginning(node *head, int data)
+node *insert_before_first(node **head, int data)
 {
+    if (head == NULL)
+        return NULL;
     node *p = (node *)malloc(sizeof(node));
-    p->next = head;
+    p->next = *head;
     p->data = data;
+    *head = p;
+    return *head;
+}
+node *insert_before_index(node **head, int data, int index)
+{
+    // empty
+    if (*head == NULL)
+    {
+        return 0;
+    }
+    if (index == 0)
+    {
+        node *ptr = (node *)malloc(sizeof(node));
+        ptr->data = data;
+        ptr->next = *head;
+        *head = ptr;
+        return *head;
+    }
+    // between
+    for (int i = 0; i == index; i++)
+    {
+        /* code */
+    }
+}
+node *insert_after_node(node *p, node *pn, int data)
+{
+
+    node *ptr = (node *)malloc(sizeof(node));
+    ptr->data = data;
+    ptr->next = pn->next;
+    pn->next = ptr;
     return p;
 }
-node *insertatmiddle(node *n, int data, int i)
+node *insert_at_end(node *p, int data)
 {
-    node *p = (node *)malloc(sizeof(node));
-    p->next = n;
-    p->data = data;
+    while (p->next != NULL)
+    {
+
+        p = p->next;
+    }
+    node *ptr = (node *)malloc(sizeof(node));
+    ptr->data = data;
+    p->next = ptr;
+    ptr->next = NULL;
     return p;
 }
+node *delete_first(node **head)
+{
+
+    node *temp = *head;
+    *head = (*head)->next;
+    free(temp);
+}
+
 int main()
 {
     node *head = (node *)malloc(sizeof(node));
@@ -42,13 +88,25 @@ int main()
 
     third->data = 3;
     third->next = NULL;
-    // head = insertatbeginning(head, 11);
-    printf("-------\n");
+
+    /*
+    insert_before_first(&head, 11);//address
     traversal(head);
 
-    insertatmiddle(second, 22, 2);
     printf("-------\n");
+    insert_at_end(head, 33);
     traversal(head);
+    printf("-------\n");
+    insert_after_node(head, third, 44);
+    traversal(head);
+    printf("-------\n");
+    */
+    traversal(head);
+    printf("-------\n");
+    delete_first(&head); //
+    traversal(head);
+    printf("-------\n");
 
-    return 0;
+    insert_before_index(head, 1, 0); //
+    traversal(head);
 }
